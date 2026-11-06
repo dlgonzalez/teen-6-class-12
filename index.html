@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teen 6 · Class 12 · Technology & Conditional Power</title>
+<style>
+:root{--ink:#243047;--muted:#66738a;--paper:#f7f8fc;--card:#fff;--line:#e4e8f0;--blue:#4776d0;--teal:#199b8e;--orange:#e49a35;--purple:#8765c5;--pink:#d66b91;--shadow:0 12px 30px rgba(40,55,85,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:11px 16px;background:var(--blue);color:white;font-weight:700;transition:.15s}button:hover{filter:brightness(.96);transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.secondary{background:#edf2fc;color:#31558f}.ghost{background:transparent;color:var(--blue);border:1px solid var(--line)}.small{padding:8px 12px;font-size:.9rem}
+header{background:linear-gradient(120deg,#eaf1ff,#edf9f6 60%,#fff4e8);padding:34px 22px 28px;border-bottom:1px solid var(--line)}
+.hero{max-width:1150px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;gap:25px;align-items:center}.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#5674a7}.hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.06;margin:9px 0 12px}.hero p{max-width:700px;color:#56647c;margin:0}.hero-art{background:#fff;border:1px solid #e2e9f4;border-radius:24px;padding:24px;text-align:center;box-shadow:var(--shadow);font-size:3rem}.hero-art strong{display:block;font-size:1rem;color:var(--ink);margin-top:10px}
+nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);overflow-x:auto}
+nav .inner{max-width:1150px;margin:auto;display:flex;gap:6px;padding:10px 16px;white-space:nowrap}
+nav a{text-decoration:none;color:#5c6980;font-size:.88rem;font-weight:700;padding:9px 12px;border-radius:10px}
+nav a:hover,nav a.active{background:#eaf0ff;color:#31558f}
+.section{display:none;margin:24px 0 42px;scroll-margin-top:75px}
+.section.active{display:block}
+.home-panel{background:linear-gradient(125deg,#eef3ff,#f0faf7);border:1px solid #e0e8f3;border-radius:22px;padding:24px;margin:8px 0 22px}
+.home-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.home-tile{display:flex;align-items:center;gap:12px;text-align:left;background:#fff;color:var(--ink);border:1px solid var(--line);padding:15px;border-radius:15px;box-shadow:0 5px 16px rgba(40,55,85,.05)}
+.home-tile span:first-child{font-size:1.55rem}
+.home-tile small{display:block;color:var(--muted);font-weight:500}
+.section-nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px;padding-top:16px;border-top:1px solid var(--line)}
+@media(max-width:760px){.home-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.home-grid{grid-template-columns:1fr}}
+main{max-width:1150px;margin:26px auto;padding:0 18px 70px}.section{margin:30px 0 42px;scroll-margin-top:75px}.section-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}.num{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:#e9efff;color:#4169b4;font-weight:900;flex:none}.section h2{font-size:1.65rem;line-height:1.2;margin:0 0 5px}.sub{color:var(--muted);margin:0}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);margin:14px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.tag{display:inline-block;border-radius:999px;padding:4px 10px;font-size:.76rem;font-weight:800;background:#eef2fa;color:#53627a}.tag.green{background:#e7f6f1;color:#147c6d}.tag.orange{background:#fff3df;color:#a96b13}.tag.purple{background:#f1ebfb;color:#7653b1}.tag.pink{background:#fbeaf0;color:#aa4d72}.muted{color:var(--muted)}.callout{border-left:4px solid var(--teal);background:#eff9f7;padding:14px 16px;border-radius:0 12px 12px 0}.formula{font-size:clamp(1.05rem,2.5vw,1.45rem);font-weight:900;letter-spacing:.01em;margin:8px 0}.greenText{color:#168875}.orangeText{color:#b8781e}.purpleText{color:#7955b7}.example{background:#f7f9fd;border-radius:12px;padding:12px 14px;margin:9px 0}.example b{color:#344c76}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:.85rem;color:#586783;background:#f7f9fd}
+.activity{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:white;box-shadow:var(--shadow);margin:16px 0}.activity-top{padding:16px 20px;background:linear-gradient(90deg,#eef3ff,#f2fbf9);display:flex;justify-content:space-between;gap:12px;align-items:center}.activity-top h3{margin:0;font-size:1.12rem}.activity-body{padding:20px}.progress{height:8px;background:#edf0f5;border-radius:99px;overflow:hidden;margin:10px 0 16px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--teal));transition:width .25s}.qmeta{display:flex;justify-content:space-between;color:var(--muted);font-size:.86rem;font-weight:700}.prompt{font-size:1.15rem;font-weight:800;margin:16px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answer{background:#f4f6fb;color:#34435c;border:1px solid #e2e7f0;text-align:left;min-height:54px}.answer.selected{outline:3px solid #9db6eb}.answer.correct{background:#e7f6ef;color:#126d4e;border-color:#a7dec7}.answer.wrong{background:#fff0ed;color:#a64c3e;border-color:#f0c3b9}.feedback{margin:14px 0;padding:13px 15px;border-radius:12px;background:#f4f7fb;display:none}.feedback.show{display:block}.game-controls{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:16px}.score{font-weight:900;color:#3d659f}.text-input{width:100%;padding:12px;border:1px solid #ccd5e4;border-radius:12px;background:white;color:var(--ink)}
+details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 16px;margin:9px 0}summary{font-weight:800;cursor:pointer}.pillrow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.pill{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:#f7f9fc;color:#586783;font-size:.84rem;font-weight:700}
+.video{width:100%;aspect-ratio:16/9;border:0;border-radius:16px;background:#111}.transcript{max-height:340px;overflow:auto;line-height:1.9;background:#f8f9fc;padding:16px;border-radius:12px}.blank{width:120px;max-width:100%;border:0;border-bottom:2px solid #7893c4;background:#fff;padding:4px;color:#26344d}.expert{display:flex;gap:14px;align-items:flex-start}.avatar{width:58px;height:58px;display:grid;place-items:center;flex:none;border-radius:18px;background:#edf2ff;font-size:1.8rem}.expert h3{margin:0 0 4px}.expert p{margin:4px 0;color:var(--muted)}.expert a{font-weight:800;color:#4169b4}.promptlist li{margin:8px 0}.dilemma{border:1px solid var(--line);border-radius:16px;padding:17px;background:linear-gradient(135deg,#fff,#f8f9fd)}.dilemma h4{margin:0 0 8px}.report{background:#f8f9fc;border-radius:14px;padding:15px}.footer{text-align:center;color:var(--muted);font-size:.85rem;padding:24px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.hero-art{display:none}.grid,.three,.two-col{grid-template-columns:1fr}.answers{grid-template-columns:1fr}.card{padding:17px}.activity-body{padding:16px}}
+@media print{nav,.game-controls,button{display:none!important}.section{display:block!important}body{background:white}.card,.activity{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="hero"><div><div class="eyebrow">TEEN 6 · CLASS 12</div><h1>📱 Technology, Screen Time<br>& Conditional Power</h1><p>Think critically about digital life, master three conditionals, solve challenges and share ideas with an expert.</p><div class="pillrow"><span class="pill">A2+ / Low B1</span><span class="pill">Pair work · Teams · Speaking</span><span class="pill">Teacher-guided lesson</span></div></div><div class="hero-art">📱 💬 🎮<strong>Think it · Say it · Solve it</strong></div></div></header>
+<nav><div class="inner">
+<a href="#home" class="active" data-section="home">🏠 Home</a>
+<a href="#warmup" data-section="warmup">⚡ Warm-up</a>
+<a href="#crossword" data-section="crossword">🧩 Crossword</a>
+<a href="#discussion" data-section="discussion">💬 Discussion</a>
+<a href="#video" data-section="video">🎥 Video Lab</a>
+<a href="#grammar" data-section="grammar">🌈 Grammar</a>
+<a href="#quest" data-section="quest">🏆 Quest</a>
+<a href="#speaking" data-section="speaking">🎤 Speaking</a>
+<a href="#experts" data-section="experts">🗣️ Experts</a>
+</div></nav>
+<main>
+
+<section class="section active" id="home">
+ <div class="home-panel">
+  <div class="eyebrow">WELCOME TO YOUR CLASS</div>
+  <h2 style="font-size:2rem;margin:8px 0">📱 Technology, Screen Time & Conditional Power</h2>
+  <p class="sub">Choose a section to begin. Each activity opens in its own workspace — no endless scrolling.</p>
+  <div class="pillrow"><span class="pill">A2+ / Low B1</span><span class="pill">Team challenges</span><span class="pill">Speaking & critical thinking</span></div>
+ </div>
+ <h3>🧭 Class sections</h3><div class="home-grid" id="homeTiles"></div>
+ <div class="card"><h3>💡 How to use this lesson</h3><p>Use the navigation bar or the cards above to move between sections. Each activity opens independently. Return here at any time using Home.</p></div>
+<div class="section-nav"><span></span><button onclick="showSection(&quot;warmup&quot;)">Next section →</button></div></section>
+
+<section class="section" id="warmup"><div class="section-head"><div class="num">01</div><div><h2>⚡ Warm-up: Tech Vocabulary Arcade</h2><p class="sub">A quick team challenge to wake up your technology vocabulary.</p></div></div>
+<div class="card"><span class="tag green">Team game · 10–12 min</span><h3>🎯 How to play</h3><ol><li>Make two or more teams.</li><li>Read each clue and choose the correct word.</li><li>Give your team one point for each correct answer.</li><li>After choosing, explain the word or use it in a sentence for a bonus point.</li></ol><p class="callout"><b>Teacher tip:</b> Project the game. Teams can discuss before answering. No student needs an individual device.</p><div id="warmGame"></div></div><div class="section-nav"><button class="secondary" onclick="showSection(&quot;home&quot;)">← Previous</button><button onclick="showSection(&quot;crossword&quot;)">Next section →</button></div></section>
+<section class="section" id="crossword"><div class="section-head"><div class="num">02</div><div><h2>🧩 Technology Crossword</h2><p class="sub">Work with a partner. Read the clues, discuss the vocabulary and complete the crossword.</p></div></div><div class="card"><span class="tag">Pair work · 10–15 min</span><p>Open the crossword in a new tab. Take turns reading clues and suggesting answers. If you disagree, explain your reasoning in English.</p><a href="http://www.eslcrosswords.com/TechnologyADV.html" target="_blank" rel="noopener"><button>Open the online crossword ↗</button></a><p class="muted">After finishing, choose three words and use each one in an original sentence.</p></div><div class="section-nav"><button class="secondary" onclick="showSection(&quot;warmup&quot;)">← Previous</button><button onclick="showSection(&quot;discussion&quot;)">Next section →</button></div></section>
+<section class="section" id="discussion"><div class="section-head"><div class="num">03</div><div><h2>💬 Discussion: How Much Screen Time Is Good for Children?</h2><p class="sub">Think about your own habits and listen to different points of view.</p></div></div><div class="card"><div class="grid"><div><h3>🤔 Think first</h3><ul><li>How many hours do you spend looking at screens every day?</li><li>What do you usually do on a screen?</li><li>Is watching a video the same as creating one?</li></ul></div><div><h3>🗣️ Discuss with a partner</h3><ul><li>Should parents set screen-time limits?</li><li>Can technology help children learn?</li><li>What is one healthy digital habit?</li></ul></div></div><div class="callout"><b>Useful language:</b> I think… / In my opinion… / I agree because… / I see your point, but… / It depends on…</div></div><div class="section-nav"><button class="secondary" onclick="showSection(&quot;crossword&quot;)">← Previous</button><button onclick="showSection(&quot;video&quot;)">Next section →</button></div></section>
+<section class="section" id="video"><div class="section-head"><div class="num">04</div><div><h2>🎥 Video & Listening Lab</h2><p class="sub">Watch, listen for key information and build a supported opinion.</p></div></div>
+<div class="card"><span class="tag orange">Before watching</span><h3>Predict</h3><p>Look at the title question: <b>How much screen time is too much?</b> What do you think the report will say? Write one prediction.</p><textarea class="text-input" rows="2" placeholder="I think the report will say that..."></textarea></div>
+<div class="card"><span class="tag green">Watch the video</span><h3>▶ Screen time and children</h3><iframe class="video" src="https://www.youtube.com/embed/IuMrBs7dGCo?start=123" title="Screen time and children" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><p class="muted">If the embedded video does not load, <a href="https://www.youtube.com/watch?v=IuMrBs7dGCo&t=123s" target="_blank" rel="noopener">open it on YouTube</a>.</p></div>
+<div class="card"><span class="tag orange">Exercise A · Listening gap-fill</span><h3>✍️ Listen and complete</h3><p>Listen again. Type the missing words. The sentences follow the supplied transcript; some short fragments have been lightly cleaned up for classroom use.</p><div id="gapExercise"></div><button class="secondary small" onclick="checkGaps()">Check my answers</button> <span id="gapScore" class="score"></span></div>
+<div class="card"><span class="tag">Exercise B · Comprehension</span><h3>🔎 What did the report say?</h3><div id="compExercise"></div></div>
+<div class="card"><span class="tag purple">Exercise C · Build your opinion</span><h3>🧠 From information to opinion</h3><ol><li><b>State your opinion:</b> I believe that…</li><li><b>Give a reason:</b> This is because…</li><li><b>Use evidence:</b> In the report, we learned that…</li><li><b>Give an example:</b> For example…</li><li><b>Consider another side:</b> However…</li><li><b>Conclude:</b> For these reasons…</li></ol><label for="opinion">Write a short opinion (4–6 sentences).</label><textarea id="opinion" class="text-input" rows="5" placeholder="In my opinion, children should..."></textarea><p class="muted">Then share your opinion with a partner. Ask: What makes you think that?</p></div>
+<div class="card"><details><summary>📄 Transcript support (teacher / second listening)</summary><div class="transcript"><p>If you have kids, you know that your laptop or your tablet has become a playmate, a babysitter and a teacher all rolled into one. But how much screen time is too much?</p><p>Ten years ago, we only had to worry about one screen: the television. Now they're everywhere. Astonishing numbers from HealthyChildren.org show kids as young as eight years old are spending seven hours a day being entertained on a screen.</p><p>Meet two-year-old Bella. Take a look around her house: it is filled with electronics — televisions, laptops, a desktop computer, iPads and phones. Like many kids her age, she's already a screen genius.</p><p>Living right next door is the Ganesh family. They decided very early on to keep their kids screen-free for the most part. They limited screen time. In their house there is one television, and cell-phone use is a half-hour maximum on their days off.</p><p>Instead, they spend time playing real games like Battleship. Research from the American Academy of Pediatrics has shown that when you take electronics away, children's creativity begins to blossom, their moods become brighter and they're more interested in physical play.</p><p>Eye contact and verbal conversation improve. No screen time can also enhance empathy in children. Better sleep patterns may develop, and kids may even experience a reduction in headaches.</p><p>Once an electronic addiction has developed, however, it can be hard to break. Distraction works well with kids: they may miss technology less if they have another fun physical activity or something else they enjoy.</p><p>So put down the two-dimensional world and get a grasp on reality.</p><p class="muted">Note: the transcript supplied with the lesson contains a few unclear automatic-transcription fragments, especially during the children's game dialogue and family names. Those fragments are not used in the gap-fill.</p></div></details></div><div class="section-nav"><button class="secondary" onclick="showSection(&quot;discussion&quot;)">← Previous</button><button onclick="showSection(&quot;grammar&quot;)">Next section →</button></div></section>
+<section class="section" id="grammar"><div class="section-head"><div class="num">05</div><div><h2>🌈 Conditional Power: Grammar Masterclass</h2><p class="sub">Three ways to talk about possible futures, imaginary situations and different pasts.</p></div></div>
+<div class="grid three">
+<div class="card"><span class="tag green">1st conditional</span><h3 class="greenText">🌱 Real possibility</h3><div class="formula greenText">IF + PRESENT,<br>WILL + BASE VERB</div><p>Use it for a real or possible future situation and its likely result.</p><div class="example"><b>If I turn off notifications, I will concentrate better.</b></div><p><b>Meaning:</b> This is possible. It may really happen.</p></div>
+<div class="card"><span class="tag orange">2nd conditional</span><h3 class="orangeText">💭 Imaginary situation</h3><div class="formula orangeText">IF + PAST,<br>WOULD + BASE VERB</div><p>Use it for imaginary, unlikely or hypothetical situations in the present or future.</p><div class="example"><b>If I were the principal, I would create phone-free breaks.</b></div><p><b>Meaning:</b> Imagine this situation. It is not real now.</p></div>
+<div class="card"><span class="tag purple">3rd conditional</span><h3 class="purpleText">⏳ Different past</h3><div class="formula purpleText">IF + PAST PERFECT,<br>WOULD HAVE + PAST PARTICIPLE</div><p>Use it to imagine a different result for something in the past that did not happen.</p><div class="example"><b>If I had gone to bed earlier, I would have felt better.</b></div><p><b>Meaning:</b> The past cannot change. We imagine another result.</p></div>
+</div>
+<div class="card"><h3>🔍 Compare the same topic in all three conditionals</h3><div class="table-wrap"><table><thead><tr><th>Conditional</th><th>Example</th><th>What it means</th></tr></thead><tbody><tr><td class="greenText"><b>First</b></td><td>If I use my phone tonight, I will sleep less.</td><td>A real future possibility.</td></tr><tr><td class="orangeText"><b>Second</b></td><td>If I didn't have my phone, I would read more.</td><td>An imaginary situation now.</td></tr><tr><td class="purpleText"><b>Third</b></td><td>If I hadn't used my phone last night, I would have slept better.</td><td>A different past, but it did not happen.</td></tr></tbody></table></div></div>
+<div class="grid">
+<div class="card"><h3>🧩 How to build the sentence</h3><p><b>IF CLAUSE</b> = the condition / situation.</p><p><b>MAIN CLAUSE</b> = the result.</p><div class="example">If you <b>take breaks</b> (condition), you <b>will feel</b> less tired (result).</div><p>You can change the order:</p><div class="example">You will feel less tired <b>if you take breaks.</b></div><p>Use a comma when the if-clause comes first. Usually, no comma is needed when it comes second.</p></div>
+<div class="card"><h3>🚫 Common mistakes</h3><ul><li>❌ If I <b>will study</b>, I will pass.<br>✅ If I <b>study</b>, I will pass.</li><li>❌ If I <b>would be</b> principal, I would…<br>✅ If I <b>were</b> principal, I would…</li><li>❌ If I <b>would have known</b>, I would have…<br>✅ If I <b>had known</b>, I would have…</li><li>❌ I would have <b>go</b>…<br>✅ I would have <b>gone</b>…</li></ul></div>
+</div>
+<div class="grid three">
+<div class="card"><h3 class="greenText">1st conditional details</h3><p><b>Positive:</b> If + present simple, will + verb.</p><p><b>Negative:</b> If I don't rest, I won't feel ready.</p><p><b>Question:</b> What will you do if the internet stops working?</p><p><b>Other result forms:</b> can, may, might or an imperative.</p><div class="example">If you finish your homework, you can play.</div></div>
+<div class="card"><h3 class="orangeText">2nd conditional details</h3><p><b>Positive:</b> If + past simple, would + verb.</p><p><b>Negative:</b> If I didn't have Wi-Fi, I wouldn't spend so much time online.</p><p><b>Question:</b> What would you do if you lost your phone?</p><p>In careful English, <b>were</b> is common for all subjects in hypothetical statements.</p><div class="example">If I were you, I would take a break.</div></div>
+<div class="card"><h3 class="purpleText">3rd conditional details</h3><p><b>Positive:</b> If + had + past participle, would have + past participle.</p><p><b>Negative:</b> If I hadn't stayed up, I wouldn't have felt tired.</p><p><b>Question:</b> What would you have done if your phone had run out of battery?</p><p>It often expresses regret, criticism or an imagined alternative.</p><div class="example">If we had left earlier, we would have arrived on time.</div></div>
+</div>
+<div class="card"><h3>🧠 Quick meaning check</h3><div class="grid"><div><b>First:</b> Is it possible? Yes, it may happen.</div><div><b>Second:</b> Is it imaginary or unlikely? Yes, imagine it.</div><div><b>Third:</b> Is it about a past that cannot change? Yes, imagine another past.</div></div><p class="callout">Remember: the past form in the second conditional does not always mean past time. It shows distance from reality. In the third conditional, the past perfect and “would have” refer to an unreal past.</p></div>
+<div class="section-nav"><button class="secondary" onclick="showSection(&quot;video&quot;)">← Previous</button><button onclick="showSection(&quot;quest&quot;)">Next section →</button></div></section>
+<section class="section" id="quest"><div class="section-head"><div class="num">06</div><div><h2>🏆 Conditional Quest: The Digital Challenge</h2><p class="sub">Six different missions. Earn points, learn from feedback and unlock your grammar power.</p></div></div><div class="card"><p><b>How to play:</b> Complete each mission one question at a time. Choose, build, detect, complete and travel through time. Every mission has 15 rounds. Your score is saved on this page while it stays open.</p><div class="pillrow"><span class="pill">🎮 6 missions</span><span class="pill">⭐ 15 rounds each</span><span class="pill">🏅 90 challenges total</span></div><p class="muted">Teacher option: assign selected missions as stations or teams. Completing all 90 challenges may take longer than one lesson.</p></div>
+<div id="missions"></div><div class="section-nav"><button class="secondary" onclick="showSection(&quot;grammar&quot;)">← Previous</button><button onclick="showSection(&quot;speaking&quot;)">Next section →</button></div></section>
+<section class="section" id="speaking"><div class="section-head"><div class="num">07</div><div><h2>🎤 Speaking Lab: Make It Personal</h2><p class="sub">Use the conditionals to talk about your life, choices and ideas.</p></div></div>
+<div class="card"><span class="tag green">A · Finish the thought</span><h3>Complete the sentences with your own information</h3><p>Choose a prompt, finish it and explain your answer to a partner. Try to add a reason or an example.</p><div id="personalPrompts"></div><button class="secondary" onclick="newPersonal()">Give me another prompt ↻</button></div>
+<div class="card"><span class="tag purple">B · Digital Dilemma Cards</span><h3>🃏 Pick a dilemma and solve it</h3><p>Work in pairs or small groups. Discuss the problem and use the conditional type shown on the card. Give a solution and explain why it could work.</p><div class="grid" id="dilemmas"></div><button class="secondary" onclick="shuffleDilemmas()">Shuffle the cards ↻</button></div><div class="section-nav"><button class="secondary" onclick="showSection(&quot;quest&quot;)">← Previous</button><button onclick="showSection(&quot;experts&quot;)">Next section →</button></div></section>
+<section class="section" id="experts"><div class="section-head"><div class="num">08</div><div><h2>🗣️ Talk to an Expert</h2><p class="sub">Choose a specialist, discuss technology and bring back useful ideas for your classmates.</p></div></div>
+<div class="card"><span class="tag green">Group mission · 20–30 min</span><h3>🎯 Your mission</h3><ol><li>Form a group and choose <b>one</b> expert.</li><li>Open the expert room using the link on the expert's card.</li><li>Introduce your group and explain what you want to learn.</li><li>Ask questions, listen carefully and give your own opinions. Do not let one person do all the talking.</li><li>Ask the expert for a final report or summary of your conversation.</li><li>Prepare a short group presentation to share the most useful ideas with the class.</li></ol><div class="callout"><b>Speaking mission:</b> Try to use at least one first conditional, one second conditional and one third conditional during your conversation. Use them naturally; do not force them into every answer.</div></div>
+<div class="grid" id="expertsGrid"></div>
+<div class="card"><h3>📝 Group report: capture what you learned</h3><p>Use the expert's final report to complete this organizer. Then present the information in your own words.</p><div class="report"><label>Our expert</label><input class="text-input" placeholder="Name and role"><br><br><label>1. The expert's main idea</label><textarea class="text-input" rows="2" placeholder="The expert believes that..."></textarea><br><br><label>2. Three important ideas</label><textarea class="text-input" rows="3" placeholder="First... / Also... / Finally..."></textarea><br><br><label>3. One surprising thing we learned</label><textarea class="text-input" rows="2"></textarea><br><br><label>4. Our group's opinion</label><textarea class="text-input" rows="2" placeholder="We agree/disagree because..."></textarea><br><br><label>5. Three conditional sentences connected to the conversation</label><textarea class="text-input" rows="4" placeholder="First conditional: ...&#10;Second conditional: ...&#10;Third conditional: ..."></textarea></div><p class="muted">Presentation tip: Do not read the report word for word. Explain the ideas naturally and make sure every group member contributes.</p></div>
+<div class="card"><h3>❓ Helpful questions for your expert</h3><div class="grid"><ul class="promptlist"><li>What is one healthy habit teenagers should develop?</li><li>Why do you think young people spend so much time online?</li><li>What would you recommend to a teenager who cannot stop checking their phone?</li></ul><ul class="promptlist"><li>What will happen if teenagers do not get enough sleep?</li><li>What would you change if you could redesign social media?</li><li>What might have happened if people had never invented smartphones?</li></ul></div></div>
+<div class="section-nav"><button class="secondary" onclick="showSection(&quot;speaking&quot;)">← Previous</button><button class="secondary" onclick="showSection(&quot;home&quot;)">Back to home ↑</button></div></section>
+<div class="footer">Teen 6 · Class 12 · Technology, Screen Time & Conditional Power<br>Teacher-guided interactive lesson resource</div>
+</main>
+
+<script>
+const sectionInfo=[
+ ["warmup","⚡","Technology Vocabulary Game","Quick team warm-up"],
+ ["crossword","🧩","Online Crossword","Pair vocabulary challenge"],
+ ["discussion","💬","Screen Time Discussion","Share and compare opinions"],
+ ["video","🎥","Video & Listening Lab","Watch, listen and respond"],
+ ["grammar","🌈","Conditional Masterclass","Learn conditionals 1, 2 and 3"],
+ ["quest","🏆","Conditional Quest","Six interactive game missions"],
+ ["speaking","🎤","Speaking Lab","Personal sentences and dilemmas"],
+ ["experts","🗣️","Talk to an Expert","Group interview and report"]
+];
+function showSection(id){
+ document.querySelectorAll("main > .section").forEach(s=>s.classList.toggle("active",s.id===id));
+ document.querySelectorAll("nav a[data-section]").forEach(a=>a.classList.toggle("active",a.dataset.section===id));
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll("nav a[data-section]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();showSection(a.dataset.section)}));
+const tiles=document.getElementById("homeTiles");
+if(tiles) tiles.innerHTML=sectionInfo.map(s=>`<button class="home-tile" onclick="showSection('${s[0]}')"><span>${s[1]}</span><span><b>${s[2]}</b><small>${s[3]}</small></span></button>`).join("");
+</script>
+
+<script>
+const $=id=>document.getElementById(id);
+const warm=[
+["A small computer you can carry and use with your fingers.","tablet","laptop","printer","router",0],
+["A program you use on a phone or computer.","app","keyboard","screen","charger",0],
+["A secret word that protects an account.","password","website","speaker","browser",0],
+["A place online where people share posts and messages.","social media","battery","download","keyboard",0],
+["To move a file from the internet to your device.","download","upload","print","delete",0],
+["A device that connects computers to the internet.","router","camera","headphones","mouse",0],
+["A moving picture or film you watch online.","video","password","folder","message",0],
+["A small symbol you click to open a program.","icon","cable","screen time","signal",0],
+["The amount of time you spend using a screen.","screen time","software","website","battery",0],
+["A device you wear to listen without disturbing others.","headphones","printer","tablet","router",0],
+["A set of instructions that makes a computer work.","software","charger","keyboard","camera",0],
+["To send a file from your device to the internet.","upload","download","switch off","search",0],
+["A machine that makes paper copies.","printer","router","speaker","monitor",0],
+["A place on the internet with pages and information.","website","battery","app store","password",0],
+["A device that takes photographs or records video.","camera","keyboard","mouse","charger",0]
+];
+const missions=[
+{title:"Mission 1 · Choose the Correct Portal",kind:"portal",desc:"Choose the correct conditional form.",qs:[
+["If I turn off notifications, I ___ better.","will concentrate","would concentrate","would have concentrated",0,"A real future possibility uses present simple + will."],
+["If I ___ the principal, I would create a phone-free break.","am","were","had been",1,"A hypothetical present uses past simple + would."],
+["If she had charged her phone, it ___ off during the trip.","wouldn't switch","won't switch","wouldn't have switched",2,"An unreal past uses had + participle and would have + participle."],
+["If we finish early, we ___ a technology game.","play","will play","would have played",1,"The condition is possible in the future."],
+["If I had more free time, I ___ how to code.","will learn","learned","would learn",2,"The second conditional imagines a different present or future."],
+["If he hadn't stayed up late, he ___ so tired.","wouldn't be","wouldn't have been","won't be",1,"The sentence imagines a different past result."],
+["If you don't save your work, you ___ it.","might lose","would have lost","lost",0,"Present simple after if; might + verb is a possible future result."],
+["If phones were not so expensive, more people ___ them.","will buy","would buy","would have bought",1,"A hypothetical situation takes would + base verb."],
+["If they had listened to the teacher, they ___ the task.","would understand","will understand","would have understood",2,"This is a past condition with a past imagined result."],
+["If my battery dies, I ___ your charger.","borrowed","will borrow","would have borrowed",1,"A possible future condition."],
+["If I could design an app, I ___ a study game.","will create","would create","would have created",1,"Could + base verb introduces an imaginary ability."],
+["If she had checked the time, she ___ the bus.","wouldn't miss","wouldn't have missed","won't miss",1,"The bus was missed in the past; imagine another result."],
+["If children get enough sleep, they ___ better.","feel","would have felt","will have felt",0,"A general truth can use present simple in both clauses."],
+["If we lived without the internet, life ___ very different.","will be","would be","would have been",1,"This is an imaginary present situation."],
+["If I had put my phone away, I ___ the instructions.","would hear","will hear","would have heard",2,"Third conditional: had put / would have heard."]
+]},
+{title:"Mission 2 · Build the Sentence",kind:"builder",desc:"Choose the correctly built sentence.",qs:[
+["Choose the correct first conditional.","If I will study, I pass.","If I study, I will pass.","If I studied, I will pass.",1,"Do not use will in the if-clause."],
+["Choose the correct second conditional.","If I were you, I would take a break.","If I am you, I will take a break.","If I had been you, I take a break.",0,"If I were you is a common hypothetical expression."],
+["Choose the correct third conditional.","If he had saved it, he would keep it.","If he saved it, he will keep it.","If he had saved it, he would have kept it.",2,"Use would have + past participle for the imagined past result."],
+["Which sentence has the correct order?","I will call you if I will need help.","I will call you if I need help.","I call you if I needed help.",1,"The if-clause uses present simple."],
+["Complete: If we had left earlier, ...","we would arrive on time.","we will arrive on time.","we would have arrived on time.",2,"The condition and result are both unreal past."],
+["Complete: If I had a new laptop, ...","I would make videos.","I will made videos.","I would have make videos.",0,"Would + base verb."],
+["Choose the correct negative.","If she doesn't rest, she won't feel better.","If she won't rest, she doesn't feel better.","If she didn't rested, she won't feel better.",0,"Present simple negative in the if-clause."],
+["Choose the correct question.","What will you do if the Wi-Fi stops?","What do you do if the Wi-Fi will stop?","What would have you do if Wi-Fi stops?",0,"Will + subject + base verb; present simple after if."],
+["Complete: If I were invisible, ...","I will travel anywhere.","I would travel anywhere.","I would have travelled anywhere yesterday.",1,"Imaginary present/future."],
+["Complete: If they hadn't forgotten the password, ...","they would log in.","they will log in.","they would have logged in.",2,"Imagined past result."],
+["Choose the correct sentence.","If he had more time, he would practise.","If he has more time, he would practise yesterday.","If he would have time, he practises.",0,"Second conditional: past simple + would."],
+["Complete: If you press this button, ...","the screen would have opened.","the screen will open.","the screen opened yesterday.",1,"A likely result of a real action."],
+["Choose the correct third conditional.","If I had known, I would have helped.","If I would know, I helped.","If I knew, I would have help.",0,"Had + past participle; would have + past participle."],
+["Choose the best hypothetical advice.","If I were you, I would turn off alerts.","If I am you, I turn off alerts.","If I had been you, I will turn off alerts.",0,"If I were you is the standard form."],
+["Complete: If we hadn't used GPS, ...","we might have got lost.","we might get lost tomorrow.","we get lost.",0,"Might have + past participle is another possible unreal past result."]
+]},
+{title:"Mission 3 · Grammar Detective",kind:"detective",desc:"Find the sentence that contains the mistake.",qs:[
+["Which sentence has a mistake?","If it rains, we will stay inside.","If it will rain, we will stay inside.","If it rains, we stay inside.",1,"Use present simple, not will, after if in a future condition."],
+["Which sentence has a mistake?","If I were rich, I would travel.","If I was rich, I would travel.","If I would be rich, I travel.",2,"Do not use would in the if-clause."],
+["Which sentence has a mistake?","If she had studied, she would have passed.","If she studied, she would have passed.","If she had studied, she would passed.",2,"Use would have + past participle."],
+["Which sentence has a mistake?","If I don't sleep, I will be tired.","If I didn't sleep, I would be tired.","If I hadn't slept, I would have be tired.",2,"The third sentence needs the past participle 'been': would have been tired."],
+["Which sentence has a mistake?","If he had called, I would have answered.","If he calls, I will answer.","If he had called, I would answered.",2,"The result needs would have answered."],
+["Which sentence has a mistake?","If I had a robot, it would help me.","If I have a robot, it would help me.","If I had a robot, it could help me.",1,"For an imaginary situation, use past simple after if."],
+["Which sentence has a mistake?","If they don't hurry, they will be late.","If they won't hurry, they will be late.","If they hurry, they will arrive on time.",1,"Use present simple after if."],
+["Which sentence has a mistake?","If I had seen the message, I would have replied.","If I saw the message, I would reply.","If I had seen the message, I would replied.",2,"Would have + past participle."],
+["Which sentence has a mistake?","If she were here, she would know.","If she was here, she would know.","If she were here, she will know.",2,"Second conditional result uses would, not will."],
+["Which sentence has a mistake?","If we finish, we can leave.","If we finished, we would leave.","If we finish, we would leave tomorrow.",2,"This mixes a real condition with an unreal result."],
+["Which sentence has a mistake?","If I hadn't lost my phone, I would still have it.","If I didn't lose my phone, I would still have it.","If I hadn't lost my phone, I will still have it.",2,"The imagined past result uses would have / could have; this sentence's result should be 'would still have had it' or be rewritten."],
+["Which sentence has a mistake?","If he were more careful, he wouldn't break things.","If he is more careful, he won't break things.","If he were more careful, he won't break things.",2,"Keep the hypothetical result with would."],
+["Which sentence has a mistake?","If I had charged it, it would have worked.","If I charge it, it will work.","If I had charged it, it would work yesterday.",2,"For an unreal past result, use would have worked."],
+["Which sentence has a mistake?","If you practise, you will improve.","If you practised, you would improve.","If you would practise, you improve.",2,"Do not put would in the if-clause."],
+["Which sentence has a mistake?","If I had more time, I would learn coding.","If I had had more time, I would have learned coding.","If I had more time, I will learn coding.",2,"The hypothetical present needs would learn."]
+]},
+{title:"Mission 4 · Complete the Future",kind:"typing",desc:"Type the missing verb form. Check spelling and grammar.",qs:[
+["If I use my phone in bed, I ___ (sleep) less.","will sleep","I will sleep less if I use my phone in bed.","First conditional: will + base verb."],
+["If she ___ (turn off) alerts, she would focus better.","turned off","If she turned off alerts, she would focus better.","Second conditional: past simple in the if-clause."],
+["If they had left earlier, they ___ (catch) the bus.","would have caught","If they had left earlier, they would have caught the bus.","Third conditional: would have + participle."],
+["If we ___ (not / hurry), we will miss the start.","don't hurry","If we don't hurry, we will miss the start.","Present simple negative after if."],
+["If I were a game designer, I ___ (create) a learning game.","would create","If I were a game designer, I would create a learning game.","Would + base verb."],
+["If he had saved the file, he ___ (not / lose) his work.","wouldn't have lost","If he had saved the file, he wouldn't have lost his work.","Wouldn't have + participle."],
+["If my parents agree, I ___ (download) the app.","will download","If my parents agree, I will download the app.","Real future possibility."],
+["If I ___ (be) you, I would take a screen break.","were","If I were you, I would take a screen break.","Were is common in hypothetical advice."],
+["If we had checked the map, we ___ (not / get) lost.","wouldn't have got","If we had checked the map, we wouldn't have got lost.","Third conditional."],
+["If you don't charge your tablet, it ___ (stop) working.","will stop","If you don't charge your tablet, it will stop working.","First conditional."],
+["If I ___ (have) more storage, I would keep the videos.","had","If I had more storage, I would keep the videos.","Past simple form for an imaginary present."],
+["If she had listened, she ___ (understand) the instructions.","would have understood","If she had listened, she would have understood the instructions.","Would have + understood."],
+["If the internet goes down, we ___ (use) the printed task.","will use","If the internet goes down, we will use the printed task.","First conditional."],
+["If he ___ (not / spend) so much time gaming, he would have more time.","didn't spend","If he didn't spend so much time gaming, he would have more time.","Second conditional negative."],
+["If I had remembered the password, I ___ (log in).","would have logged in","If I had remembered the password, I would have logged in.","Third conditional."]
+]},
+{title:"Mission 5 · What Would Happen?",kind:"consequence",desc:"Choose the most logical result for the situation.",qs:[
+["If you keep your phone beside your pillow, ...","you may check it during the night.","you would have bought a new pillow.","you had checked it yesterday.",0,"The first option is a logical possible future result."],
+["If a school had a phone-free lesson, ...","students might focus more.","students will focused more.","students would have focus yesterday.",0,"A hypothetical school rule can have an imagined result."],
+["If an app uses endless scrolling, ...","people may spend longer online.","people would have spent longer last year only.","people spends longer yesterday.",0,"Endless scrolling can encourage longer use."],
+["If I could change one thing about social media, ...","I would remove harmful comments.","I will removed comments.","I would have remove comments.",0,"Second conditional: imaginary change."],
+["If children spend all day indoors, ...","they may get less physical activity.","they would have got less yesterday.","they gets more sleep always.",0,"This is a possible consequence."],
+["If you had set an alarm, ...","you would have woken up on time.","you will wake up tomorrow.","you would wake up every day.",0,"A different past result."],
+["If you take a short break every 25 minutes, ...","you may feel more focused.","you would have felt last week.","you feels focus.",0,"A real habit can have a future result."],
+["If I were a famous streamer, ...","I would need to manage my time carefully.","I will needed to manage time.","I would have manage time yesterday.",0,"Imaginary present situation."],
+["If we had read the instructions, ...","we would have made fewer mistakes.","we will make fewer mistakes tomorrow.","we make fewer mistakes now.",0,"Past alternative and past result."],
+["If notifications appear every minute, ...","they can interrupt concentration.","they would have interrupted tomorrow.","they interrupts yesterday.",0,"A realistic consequence."],
+["If I didn't have internet for a week, ...","I would find other ways to communicate.","I will found other ways.","I would have find yesterday.",0,"Hypothetical situation."],
+["If the class finishes the project today, ...","they will present it tomorrow.","they would presented it yesterday.","they had present it.",0,"Possible future result."],
+["If he had backed up his photos, ...","he wouldn't have lost them.","he won't lose them tomorrow.","he doesn't lose them last week.",0,"Imagined alternative to a past problem."],
+["If you were the app designer, ...","what would you change?","what will you changed?","what would you have change tomorrow?",0,"Second conditional question."],
+["If teens get enough sleep, ...","they are often more ready to learn.","they would have be ready yesterday.","they will being ready.",0,"A general present result."]
+]},
+{title:"Mission 6 · Time Machine",kind:"timemachine",desc:"Travel to the past. Choose the third conditional sentence.",qs:[
+["You forgot your homework because you played games. Imagine another past.","If I had started earlier, I would have finished my homework.","If I start earlier, I will finish my homework.","If I started earlier, I would finish my homework.",0,"Third conditional: an unreal past."],
+["Your phone battery died. Imagine you charged it.","If I charge it, it works.","If I had charged it, it wouldn't have died.","If I charged it, it would not die tomorrow.",1,"The charging did not happen in the past."],
+["You missed a video call. Imagine you checked your messages.","If I had checked my messages, I would have seen the call.","If I check my messages, I see the call.","If I checked my messages, I would see the call.",0,"A different past action and result."],
+["You got lost. Imagine you downloaded a map.","If we download a map, we will not get lost.","If we had downloaded a map, we wouldn't have got lost.","If we downloaded a map, we won't get lost.",1,"Third conditional."],
+["You sent a message to the wrong person. Imagine you checked the name.","If I had checked the name, I wouldn't have sent it to the wrong person.","If I check the name, I won't send it.","If I checked the name, I wouldn't send it.",0,"The mistake already happened."],
+["You stayed up too late. Imagine you stopped gaming earlier.","If I had stopped earlier, I would have slept more.","If I stop earlier, I sleep more.","If I stopped earlier, I would sleep more.",0,"Unreal past."],
+["You lost a document. Imagine you saved a copy.","If she saves a copy, she will find it.","If she had saved a copy, she could have recovered it.","If she saved a copy, she can recover it yesterday.",1,"Could have recovered is an alternative past result."],
+["You forgot your headphones. Imagine you packed them.","If I had packed them, I would have had them.","If I pack them, I have them.","If I packed them, I will have them.",0,"Had packed / would have had."],
+["You didn't understand a tutorial. Imagine you watched it twice.","If I had watched it twice, I might have understood it.","If I watch it twice, I understand it yesterday.","If I watched it twice, I will understand it.",0,"Might have + past participle shows a possible alternative past."],
+["You deleted a photo. Imagine you made a backup.","If we had made a backup, we would still have had the photo.","If we make a backup, we still have the photo yesterday.","If we made a backup, we will have the photo.",0,"An imagined past condition and result."],
+["You didn't ask for help. Imagine you asked your teacher.","If I had asked, my teacher would have helped me.","If I ask, my teacher would help yesterday.","If I asked, my teacher will help.",0,"Third conditional."],
+["You missed the bus because you woke up late.","If I had woken up earlier, I would have caught the bus.","If I wake up earlier, I caught the bus.","If I woke up earlier, I will catch the bus yesterday.",0,"A different past."],
+["You forgot to turn off notifications and got distracted.","If I had turned them off, I might have focused better.","If I turn them off, I focused better yesterday.","If I turned them off, I will focus better yesterday.",0,"Might have focused is a possible past result."],
+["Your group didn't finish the presentation because you started late.","If we had started sooner, we would have finished on time.","If we start sooner, we finished on time.","If we started sooner, we will finish yesterday.",0,"Third conditional."],
+["You didn't bring your charger on a trip.","If I had brought my charger, I wouldn't have worried about the battery.","If I bring my charger, I wouldn't worry yesterday.","If I brought my charger, I won't worry.",0,"A past situation that cannot now be changed."]
+]}
+];
+let globalScore=0;
+function renderQuiz(target,data,mode="quiz"){
+ const root=$(target);let index=0,score=0,answered=false;
+ function draw(){
+  const q=data[index];let options=(target==="warmGame"?q.slice(1,5):q.slice(1,4));let answer=(target==="warmGame"?q[5]:q[4]);if(mode==="typing"){options=[]}
+  root.innerHTML=`<div class="qmeta"><span>ROUND ${index+1} / ${data.length}</span><span class="score">⭐ ${score} points</span></div><div class="progress"><span style="width:${(index/data.length)*100}%"></span></div><div class="prompt">${q[0]}</div>${mode==="typing"?`<input class="text-input" id="typedAnswer" placeholder="Type the missing form...">`:`<div class="answers">${options.map((x,i)=>`<button class="answer" data-i="${i}">${String.fromCharCode(65+i)}. ${x}</button>`).join("")}</div>`}<div class="feedback" id="fb"></div><div class="game-controls"><button id="checkBtn" ${mode==="typing"?"":"disabled"}>Check answer</button><button class="secondary" id="nextBtn" disabled>${index===data.length-1?"Finish mission":"Next round →"}</button><span class="muted" id="miniStatus"></span></div>`;
+  if(mode!=="typing")root.querySelectorAll(".answer").forEach(b=>b.addEventListener("click",()=>{if(answered)return;root.querySelectorAll(".answer").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");root.querySelector("#checkBtn").disabled=false;}));
+  if(mode==="typing")root.querySelector("#typedAnswer").addEventListener("input",()=>root.querySelector("#checkBtn").disabled=false);
+  root.querySelector("#checkBtn").onclick=()=>{
+   if(answered)return;
+   let ok=false,selected=-1;
+   if(mode==="typing"){const val=root.querySelector("#typedAnswer").value.trim().toLowerCase().replace(/[.!?]/g,"");ok=val===q[1].toLowerCase().replace(/[.!?]/g,"");}
+   else {selected=Number(root.querySelector(".answer.selected")?.dataset.i??-1);ok=selected===answer;}
+   answered=true;if(ok)score++;
+   if(mode!=="typing")root.querySelectorAll(".answer").forEach((b,i)=>{if(i===answer)b.classList.add("correct");else if(i===selected)b.classList.add("wrong");});
+   const fb=root.querySelector("#fb");fb.classList.add("show");fb.innerHTML=`<b>${ok?"✅ Correct!":"💡 Let's learn"}</b><br>${mode==="typing"?(ok?"Great work!":"Correct answer: <b>"+q[1]+"</b>. "):""}${q[5]||""}`;
+   root.querySelector("#nextBtn").disabled=false;root.querySelector("#checkBtn").disabled=true;
+  };
+  root.querySelector("#nextBtn").onclick=()=>{if(index<data.length-1){index++;answered=false;draw()}else{root.innerHTML=`<div class="card" style="box-shadow:none;text-align:center"><h3>🏁 Mission complete!</h3><div style="font-size:2rem;font-weight:900;color:#4776d0">${score} / ${data.length}</div><p>${score>=12?"Excellent work! Your conditional power is growing.":score>=8?"Good effort! Review the explanations and try again.":"Keep practising. Mistakes help you learn!"}</p><button onclick="renderQuiz('${target}',missions[${missions.findIndex(m=>m.title===data.title)}].qs,'${mode}')">Play again ↻</button></div>`;globalScore+=score;}}; 
+ }
+ draw();
+}
+function buildMissions(){const host=$("missions");missions.forEach((m,i)=>{const div=document.createElement("div");div.className="activity";div.innerHTML=`<div class="activity-top"><div><span class="tag ${["green","orange","purple","pink","","green"][i]}">MISSION ${i+1} · 15 ROUNDS</span><h3>${m.title}</h3><div class="muted">${m.desc}</div></div><span style="font-size:1.8rem">${["🚪","🧱","🕵️","⌨️","🔮","⏳"][i]}</span></div><div class="activity-body" id="mission${i}"></div>`;host.appendChild(div);renderQuiz("mission"+i,m.qs,m.kind==="typing"?"typing":"quiz");});}
+buildMissions();renderQuiz("warmGame",warm.map(q=>[q[0],q[1],q[2],q[3],q[4],"Use the word in a sentence for a bonus point."]));
+const gaps=[
+["Your laptop or tablet has become a playmate, a babysitter and a ______.","teacher"],
+["Ten years ago, people mainly worried about one screen: the ______.","television"],
+["Some children as young as eight spend seven hours a day being ______ on a screen.","entertained"],
+["The Ganesh family decided to keep their children mostly ______-free.","screen"],
+["In their house, cell-phone use is a half-hour ______.","maximum"],
+["The children spend time playing real games like ______.","battleship"],
+["When electronics are taken away, children's ______ begins to blossom.","creativity"],
+["Their moods become brighter and they are more interested in ______ play.","physical"],
+["Eye contact and verbal ______ improve.","conversation"],
+["Better ______ patterns may develop.","sleep"],
+["Once an electronic addiction has developed, it can be hard to ______.","break"],
+["Another fun physical activity can work as a ______.","distraction"]
+];
+function buildGaps(){const host=$("gapExercise");host.innerHTML=gaps.map((g,i)=>`<p><b>${i+1}.</b> ${g[0].replace("______",`<input class="blank" id="gap${i}" aria-label="Answer ${i+1}">`)}</p>`).join("");}
+function checkGaps(){let n=0;gaps.forEach((g,i)=>{const el=$("gap"+i);const ok=el.value.trim().toLowerCase()===g[1];el.style.borderBottomColor=ok?"#15966d":"#d66b5c";if(ok)n++;});$("gapScore").textContent=`${n} / ${gaps.length} correct`;}
+buildGaps();
+const comp=[
+["How old is Bella?","Two years old","Eight years old","Ten years old",0,"The report introduces two-year-old Bella."],
+["What does the report say about some eight-year-olds?","They spend around seven hours a day being entertained on screens.","They never use screens.","They only use screens for homework.",0,"The report cites a figure of seven hours a day."],
+["What did the Ganesh family decide to do?","Keep their children mostly screen-free.","Buy more devices.","Let children use phones all day.",0,"They limited screen use from an early age."],
+["What is the cell-phone limit mentioned for the family?","A half hour maximum, on days off.","Seven hours every day.","No limit at all.",0,"The report says half an hour maximum on their days off."],
+["What may happen when children spend less time with electronics?","Creativity and physical play may increase.","They stop talking to people.","They never feel tired.",0,"The report mentions creativity, mood and physical play."],
+["Which benefits are mentioned?","Better eye contact, conversation and sleep patterns.","More notifications and longer gaming.","More headaches and less empathy.",0,"These are among the possible benefits listed."],
+["What does the report suggest can help children miss technology less?","Another fun activity they enjoy.","Taking away every toy.","Giving them another screen.",0,"Distraction with an enjoyable activity is recommended."],
+["What is the main message at the end?","Spend time in the real world, not only the digital one.","Never learn to use technology.","Children should watch more television.",0,"The report encourages a balance with real-life activities."]
+];
+renderQuiz("compExercise",comp);
+const personal=[
+["If I have more free time this weekend, I will...","1st conditional"],
+["If my parents set a screen-time limit, I will...","1st conditional"],
+["If I learn to code, I will...","1st conditional"],
+["If I could invent a new app, I would...","2nd conditional"],
+["If I were the principal of my school, I would...","2nd conditional"],
+["If I had no internet for a week, I would...","2nd conditional"],
+["If I had gone to bed earlier last night, I would have...","3rd conditional"],
+["If I hadn't spent so much time gaming yesterday, I would have...","3rd conditional"],
+["If I had invented a popular app, I would have...","3rd conditional"],
+["If I could change one thing about my digital habits, I would...","2nd conditional"]
+];let pIndex=0;
+function newPersonal(){pIndex=Math.floor(Math.random()*personal.length);$("personalPrompts").innerHTML=`<div class="example"><span class="tag">${personal[pIndex][1]}</span><h3>${personal[pIndex][0]}</h3><textarea class="text-input" rows="2" placeholder="Complete the sentence with your own idea..."></textarea></div>`;}
+newPersonal();
+const dilemmas=[
+["📵 The Phone-Free Weekend","Your group of friends wants to spend the whole weekend online. One friend suggests a phone-free afternoon.","2nd","What would you do if you were in this group? What would happen if everyone joined?"],
+["🎮 The Late-Night Gamer","Your friend plays until 1 a.m. before a school day and feels tired in class.","1st","What will happen if your friend continues? What advice will you give?"],
+["📸 The Viral Post","You posted a photo and received unkind comments. You feel upset and want to delete your account.","2nd","What would you do if you were in this situation? What would you say to a friend?"],
+["🔋 The Dead Battery","Your phone died during a trip because you forgot your charger.","3rd","What would have happened if you had charged it? What could you have done differently?"],
+["🧠 The Distracted Student","A student checks messages every few minutes while doing homework.","1st","What will happen if the student keeps checking? Suggest a realistic change."],
+["🏫 The New School Rule","You can create one technology rule for your school.","2nd","What rule would you introduce if you were the principal? Why?"],
+["🗂️ The Lost Project","Your team lost a project because nobody saved a backup.","3rd","What would have happened if the team had saved a copy? What should they do next time?"],
+["🤳 The Perfect Life","A classmate compares their life with influencers and feels unhappy.","2nd","What would you tell them if you were their friend?"],
+["🎥 The Creative Creator","You want to make videos, but you spend all your screen time watching other people's videos.","1st","What will happen if you start creating instead of only watching?"],
+["🌐 No Internet Day","The internet stops working for 24 hours in your town.","2nd","What would you do if you couldn't go online for a day?"],
+["⏰ The Missed Alarm","You forgot to set an alarm and arrived late for an online class.","3rd","What would have happened if you had set an alarm?"],
+["💬 The Group Chat","Your group chat sends messages all night and interrupts everyone's sleep.","1st","What will happen if nobody mutes the chat? What can you suggest?"]
+];
+function shuffleDilemmas(){const a=[...dilemmas].sort(()=>Math.random()-.5).slice(0,6);$("dilemmas").innerHTML=a.map(d=>`<div class="dilemma"><span class="tag ${d[2]==="1st"?"green":d[2]==="2nd"?"orange":"purple"}">${d[2]} conditional</span><h4>${d[0]}</h4><p>${d[1]}</p><b>Discuss:</b><p>${d[3]}</p><textarea class="text-input" rows="2" placeholder="Our solution..."></textarea></div>`).join("");}
+shuffleDilemmas();
+const experts=[
+["👩‍⚕️","Dr. Maya Torres","Digital Wellness Coach","Balance, not ban. Healthy routines, sleep, notifications and small habit changes.","https://gemini.google.com/gem/1rM1Fsx7qLWFJ_KOXicmfmvpXlq7nseWt?usp=sharing","What small change could help teenagers sleep better?"],
+["🧠","Dr. Samuel Okoye","Adolescent Psychologist","Understand the why. Social comparison, likes, FOMO, identity and online communities.","https://gemini.google.com/gem/1psVLT4AlCY10nm-igEJPZ-Ly41uu6uB6?usp=sharing","Why do likes and comments feel so important to teenagers?"],
+["💻","Alex Chen","App Designer and Tech Enthusiast","Technology is a tool. App design, attention tricks, focus tools and creating rather than only consuming.","https://gemini.google.com/gem/1ifK_H2p8xE0rCgjPeZ4BbAYcGSfhzqCz?usp=sharing","How do apps keep users' attention, and how can we take control?"],
+["👨‍🏫","Mr. Daniel Rivera","High School Teacher and Learning Coach","Screens in the right place. Focus, multitasking, study habits and useful learning tools.","https://gemini.google.com/gem/1rxR71nPG9BAEjJqjK2beMzAxPztOKKNz?usp=sharing","What study routine would you recommend to a distracted student?"],
+["🎮","Zoe Park (ZeeStream)","Teen Content Creator and Gamer","Don't judge digital life. Online friendships, gaming skills, creativity and healthy breaks.","https://gemini.google.com/gem/1Xzm0cvonwP7aSxT3iGfjls3dTEXH7yFp?usp=sharing","How can teenagers use screen time to create and learn?"]
+];
+$("expertsGrid").innerHTML=experts.map(e=>`<div class="card"><div class="expert"><div class="avatar">${e[0]}</div><div><h3>${e[1]}</h3><b>${e[2]}</b><p>${e[3]}</p><p><b>Starter question:</b> ${e[5]}</p><a href="${e[4]}" target="_blank" rel="noopener">Enter this expert's room ↗</a></div></div></div>`).join("");
+</script>
+</body></html>
