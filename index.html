@@ -249,7 +249,15 @@ let globalScore=0;
 function renderQuiz(target,data,mode="quiz"){
  const root=$(target);let index=0,score=0,answered=false;
  function draw(){
-  const q=data[index];let options=(target==="warmGame"?q.slice(1,5):q.slice(1,4));let answer=(target==="warmGame"?q[5]:q[4]);if(mode==="typing"){options=[]}
+  const q=data[index];let options=(target==="warmGame"?q.slice(1,5):q.slice(1,4));let answer=(target==="warmGame"?q[5]:q[4]);
+  // Rotate the correct answer position across A/B/C (or A/B/C/D for the warm-up).
+  // This keeps answer keys balanced instead of repeatedly placing the answer first.
+  if(mode!=="typing" && options.length>1){
+   const targetPosition=(index + target.length) % options.length;
+   [options[answer],options[targetPosition]]=[options[targetPosition],options[answer]];
+   answer=targetPosition;
+  }
+  if(mode==="typing"){options=[]}
   root.innerHTML=`<div class="qmeta"><span>ROUND ${index+1} / ${data.length}</span><span class="score">⭐ ${score} points</span></div><div class="progress"><span style="width:${(index/data.length)*100}%"></span></div><div class="prompt">${q[0]}</div>${mode==="typing"?`<input class="text-input" id="typedAnswer" placeholder="Type the missing form...">`:`<div class="answers">${options.map((x,i)=>`<button class="answer" data-i="${i}">${String.fromCharCode(65+i)}. ${x}</button>`).join("")}</div>`}<div class="feedback" id="fb"></div><div class="game-controls"><button id="checkBtn" ${mode==="typing"?"":"disabled"}>Check answer</button><button class="secondary" id="nextBtn" disabled>${index===data.length-1?"Finish mission":"Next round →"}</button><span class="muted" id="miniStatus"></span></div>`;
   if(mode!=="typing")root.querySelectorAll(".answer").forEach(b=>b.addEventListener("click",()=>{if(answered)return;root.querySelectorAll(".answer").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");root.querySelector("#checkBtn").disabled=false;}));
   if(mode==="typing")root.querySelector("#typedAnswer").addEventListener("input",()=>root.querySelector("#checkBtn").disabled=false);
